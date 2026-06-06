@@ -2378,6 +2378,37 @@ select option { color: var(--cream); background: #1a1a16; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
 
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, set, onValue, update, remove } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCgac17CFY_vYC8gao7jRSywz6iHxjVJ9w",
+  authDomain: "selvaggia-mesas.firebaseapp.com",
+  databaseURL: "https://selvaggia-mesas-default-rtdb.firebaseio.com",
+  projectId: "selvaggia-mesas",
+  storageBucket: "selvaggia-mesas.firebasestorage.app",
+  messagingSenderId: "733435431762",
+  appId: "1:733435431762:web:655bb21db0dae84a44888b"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const mesasRef = ref(db, 'mesas');
+
+onValue(mesasRef, (snapshot) => {
+  const data = snapshot.val();
+  if (data) { svMesas = data; } else { svMesas = {}; }
+  if (document.getElementById('sv-vista-mesas') && document.getElementById('sv-vista-mesas').style.display !== 'none') svRenderMesas();
+  if (svMesaActiva && document.getElementById('sv-vista-comanda') && document.getElementById('sv-vista-comanda').style.display !== 'none') svRenderComanda();
+  if (svClMesaActiva) svRenderCuentaCliente();
+});
+
+window._fbSetMesa = function(num, data) { return set(ref(db, 'mesas/' + num), data); };
+window._fbRemoveMesa = function(num) { return remove(ref(db, 'mesas/' + num)); };
+</script>
+
 <script>
 const SV_PASS='selvaggia2025';
 const SV_TOTAL_MESAS=30;
@@ -2420,7 +2451,11 @@ function svRenderMesas(){
 
 function svSeleccionarMesa(num){
   svMesaActiva=num;
-  if(!svMesas[num]||!svMesas[num].activa)svMesas[num]={activa:true,codigo:svGenCodigo(),items:[],total:0};
+  if(!svMesas[num]||!svMesas[num].activa){
+    const nuevaMesa={activa:true,codigo:svGenCodigo(),items:[],total:0};
+    svMesas[num]=nuevaMesa;
+    if(window._fbSetMesa) window._fbSetMesa(num, nuevaMesa);
+  }
   document.getElementById('sv-comanda-title').textContent='Mesa '+num;
   document.getElementById('sv-codigo-mesa').textContent=svMesas[num].codigo;
   svGenQR(svMesas[num].codigo);
@@ -2460,19 +2495,13 @@ function svToggleCat(cat){
 function svAgregar(nombre,precio){
   svMesas[svMesaActiva].items.push({nombre,precio});
   svMesas[svMesaActiva].total+=precio;
+  if(window._fbSetMesa) window._fbSetMesa(svMesaActiva, svMesas[svMesaActiva]);
   svRenderComanda();
-  if(svClMesaActiva===svMesaActiva)svRenderCuentaCliente();
-  svToast(nombre+' agregado');
 }
 
-function svAgregarManual(){
-  const n=document.getElementById('sv-plat-input').value.trim();
-  const p=parseInt(document.getElementById('sv-prec-input').value);
-  if(!n||!p||p<=0)return;
-  svMesas[svMesaActiva].items.push({nombre:n,precio:p});
-  svMesas[svMesaActiva].total+=p;
-  document.getElementById('sv-plat-input').value='';
+document.getElementById('sv-plat-input').value='';
   document.getElementById('sv-prec-input').value='';
+  if(window._fbSetMesa) window._fbSetMesa(svMesaActiva, svMesas[svMesaActiva]);
   svRenderComanda();
   if(svClMesaActiva===svMesaActiva)svRenderCuentaCliente();
   svToast(n+' agregado');
@@ -2497,8 +2526,9 @@ function svEliminarItem(idx){
   const m=svMesas[svMesaActiva];
   m.total-=m.items[idx].precio;
   m.items.splice(idx,1);
+  if(window._fbSetMesa) window._fbSetMesa(svMesaActiva, m);
   svRenderComanda();
-  if(svClMesaActiva===svMesaActiva)svRenderCuentaCliente();
+  
 }
 
 function svEnviarCliente(){
@@ -2507,10 +2537,10 @@ function svEnviarCliente(){
 }
 
 function svLimpiarMesa(){
-  if(svMesas[svMesaActiva])svMesas[svMesaActiva]={activa:false,codigo:null,items:[],total:0};
-  if(svClMesaActiva===svMesaActiva){svClMesaActiva=null;svSalirCuenta();}
-  svRenderMesas();svVolverMesas();
-}
+  if(svMesas[svMesaActiva]){
+    svMesas[svMesaActiva]={activa:false,codigo:null,items:[],total:0};
+    if(window._fbRemoveMesa) window._fbRemoveMesa(svMesaActiva);
+  }
 
 function svVerificarCodigo(codigoParam){
   const codigo=codigoParam||document.getElementById('sv-cl-code').value.trim();
