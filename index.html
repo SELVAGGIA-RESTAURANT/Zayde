@@ -1,0 +1,2760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SELVAGGIA — Restaurante mediterráneo premium en Zapopan. Gastronomía de lujo, cortes premium y experiencias únicas. Av. Patria 1891, Lobby 33.">
+<meta name="theme-color" content="#0a0a08">
+<title>SELVAGGIA — Restaurante Mediterráneo Premium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #c9a96e;
+  --gold-light: #e8d5a3;
+  --gold-dark: #9a7c4a;
+  --cream: #f5f0e8;
+  --ink: #0a0a08;
+  --ink-mid: #1a1a16;
+  --ink-soft: #2a2a24;
+  --text-muted: #8a8278;
+  --text-dim: #5a5650;
+  --border: rgba(201,169,110,0.2);
+  --border-strong: rgba(201,169,110,0.5);
+  --ff-display: 'Cinzel', serif;
+  --ff-serif: 'Cormorant Garamond', serif;
+  --ff-sans: 'Montserrat', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--ff-sans);
+  font-weight: 300;
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* CUSTOM CURSOR */
+.cursor-dot {
+  width: 8px; height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid rgba(201,169,110,0.5);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+
+/* SELECTION */
+::selection { background: rgba(201,169,110,0.2); color: var(--gold-light); }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.5rem 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s ease;
+}
+
+nav.scrolled {
+  background: rgba(10,10,8,0.95);
+  backdrop-filter: blur(20px);
+  padding: 1rem 4rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--ff-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.35em;
+  color: var(--gold);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--ff-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s, color 0.3s;
+  font-weight: 400;
+}
+
+.nav-links a:hover { opacity: 1; color: var(--gold); }
+
+.nav-cta {
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 0.7rem 1.8rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-cta:hover { background: var(--gold-light); }
+.nav-phone { font-family: var(--ff-sans); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--gold); text-decoration: none; opacity: 0.9; transition: opacity 0.3s; display: flex; align-items: center; gap: 0.4rem; }
+.nav-phone:hover { opacity: 1; }
+.nav-phone .phone-emoji { font-size: 0.85rem; }
+.nav-burger { display: none; background: none; border: none; cursor: pointer; }
+
+/* ===== HERO ===== */
+#hero {
+  height: 100vh;
+  min-height: 700px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 50%, rgba(201,169,110,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 30%, rgba(100,60,20,0.15) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(10,10,8,0.4) 0%, rgba(10,10,8,0.7) 100%);
+  z-index: 1;
+}
+
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&q=80') center/cover no-repeat;
+  filter: brightness(0.35) saturate(0.8);
+  transform: scale(1.05);
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.12); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+.hero-eyebrow {
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.3s forwards;
+}
+
+.hero-title {
+  font-family: var(--ff-display);
+  font-size: clamp(4rem, 10vw, 8.5rem);
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+  line-height: 1;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.5s forwards;
+}
+
+.hero-subtitle {
+  font-family: var(--ff-serif);
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 1s 0.7s forwards;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 3rem;
+  opacity: 0;
+  animation: fadeIn 1s 0.9s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1s 1.1s forwards;
+}
+
+.btn-primary {
+  display: inline-block;
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--gold);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-light);
+  transform: translateX(-101%);
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover::after { transform: translateX(0); }
+.btn-primary span { position: relative; z-index: 1; }
+
+.btn-outline {
+  display: inline-block;
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--cream);
+  border: 1px solid var(--border-strong);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.btn-ph { display: flex; align-items: center; gap: 0.6rem; font-family: var(--ff-sans); font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; font-weight: 400; color: var(--gold); text-decoration: none; border: 1px solid var(--border-strong); padding: 1rem 2.5rem; transition: all 0.3s ease; }
+.btn-ph:hover { background: rgba(201,169,110,0.08); border-color: var(--gold); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0;
+  animation: fadeIn 1s 1.5s forwards;
+}
+
+.hero-scroll span {
+  font-family: var(--ff-sans);
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+/* SECTION COMMON */
+section { padding: 8rem 4rem; position: relative; }
+
+.section-label {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--cream);
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.section-body {
+  font-family: var(--ff-sans);
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: var(--text-muted);
+  max-width: 500px;
+  font-weight: 300;
+}
+
+.gold-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.5rem 0;
+}
+
+/* ===== INTRO ===== */
+#intro {
+  background: var(--ink-mid);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.intro-images {
+  position: relative;
+  height: 600px;
+}
+
+.intro-img-main {
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  top: 0; right: 0;
+  object-fit: cover;
+  filter: brightness(0.85);
+}
+
+.intro-img-accent {
+  position: absolute;
+  width: 50%;
+  height: 55%;
+  bottom: 0; left: 0;
+  object-fit: cover;
+  filter: brightness(0.75);
+  border: 6px solid var(--ink-mid);
+}
+
+.intro-badge {
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+  width: 110px;
+  height: 110px;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 2px;
+  background: rgba(10,10,8,0.9);
+  z-index: 3;
+}
+
+.intro-badge-num {
+  font-family: var(--ff-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.intro-badge-text {
+  font-family: var(--ff-sans);
+  font-size: 0.45rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.intro-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.stat-item {
+  border-left: 1px solid var(--border);
+  padding-left: 1.5rem;
+}
+
+.stat-num {
+  font-family: var(--ff-serif);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--gold);
+  display: block;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  display: block;
+}
+
+/* ===== MENU ===== */
+#menu {
+  background: var(--ink);
+}
+
+.menu-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 5rem;
+}
+
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 4rem;
+  border: 1px solid var(--border);
+}
+
+.menu-tab {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  padding: 1rem 1.8rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.menu-tab:last-child { border-right: none; }
+.menu-tab.active { color: var(--ink); background: var(--gold); }
+.menu-tab:hover:not(.active) { color: var(--gold); background: rgba(201,169,110,0.06); }
+
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.menu-item {
+  background: var(--ink);
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  transition: background 0.3s;
+}
+
+.menu-item:hover { background: var(--ink-mid); }
+
+.menu-item-info { flex: 1; }
+
+.menu-item-name {
+  font-family: var(--ff-serif);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.menu-item-desc {
+  font-family: var(--ff-sans);
+  font-size: 0.65rem;
+  line-height: 1.8;
+  color: var(--text-dim);
+  font-weight: 300;
+  max-width: 280px;
+}
+
+.menu-item-tag {
+  display: inline-block;
+  font-family: var(--ff-sans);
+  font-size: 0.45rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  padding: 0.2rem 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.menu-item-price {
+  font-family: var(--ff-serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.menu-item-price small {
+  display: block;
+  font-family: var(--ff-sans);
+  font-size: 0.5rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-align: right;
+  margin-top: 0.2rem;
+}
+
+.menu-premium {
+  border-left: 2px solid var(--gold);
+}
+
+/* ===== EXPERIENCE ===== */
+#experience {
+  background: var(--ink-mid);
+  padding: 8rem 0;
+  overflow: hidden;
+}
+
+.experience-inner {
+  padding: 0 4rem;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 1.5rem;
+  margin-top: 5rem;
+  align-items: start;
+}
+
+.exp-card {
+  background: var(--ink);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s;
+}
+
+.exp-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.exp-card:hover::before { transform: translateX(0); }
+.exp-card:hover { border-color: var(--border-strong); }
+
+.exp-num {
+  font-family: var(--ff-serif);
+  font-size: 4rem;
+  font-weight: 300;
+  color: rgba(201,169,110,0.12);
+  line-height: 1;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.exp-title {
+  font-family: var(--ff-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 1rem;
+}
+
+.exp-text {
+  font-family: var(--ff-sans);
+  font-size: 0.7rem;
+  line-height: 1.9;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.exp-card.featured {
+  background: linear-gradient(135deg, rgba(201,169,110,0.08), transparent);
+  border-color: var(--border-strong);
+  transform: translateY(-20px);
+}
+
+/* ===== RESERVATIONS ===== */
+#reservaciones {
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+}
+
+.reservation-visual {
+  background: url('mesan.jpg') center/cover no-repeat;
+  position: relative;
+  min-height: 700px;
+}
+
+.reservation-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,10,8,0.3), rgba(10,10,8,0.8));
+}
+
+.reservation-form-wrap {
+  background: var(--ink-mid);
+  padding: 7rem 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-title {
+  font-family: var(--ff-serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+  font-family: var(--ff-sans);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group.full { grid-column: 1 / -1; }
+
+.form-group label {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  font-weight: 400;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--ink);
+  border: 1px solid var(--border);
+  color: var(--cream);
+  padding: 0.9rem 1rem;
+  font-family: var(--ff-sans);
+  font-size: 0.75rem;
+  font-weight: 300;
+  outline: none;
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+}
+
+.form-group select option { background: var(--ink-mid); }
+
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+.form-submit {
+  grid-column: 1 / -1;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  padding: 1.1rem;
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+}
+
+.form-submit:hover { background: var(--gold-light); }
+
+.form-note {
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  font-weight: 300;
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
+
+/* SUCCESS TOAST */
+.toast {
+  position: fixed;
+  bottom: 2rem; right: 2rem;
+  background: var(--ink-mid);
+  border: 1px solid var(--gold);
+  padding: 1.5rem 2rem;
+  z-index: 5000;
+  min-width: 300px;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+
+.toast-title {
+  font-family: var(--ff-serif);
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+
+.toast-text {
+  font-family: var(--ff-sans);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* ===== GALLERY ===== */
+#galeria {
+  background: var(--ink);
+  padding: 8rem 4rem;
+}
+
+.gallery-header { text-align: center; margin-bottom: 4rem; }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(2, 280px);
+  gap: 6px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.8) saturate(0.9);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.06);
+  filter: brightness(0.95) saturate(1.1);
+}
+
+.gallery-item:nth-child(1) { grid-column: span 5; }
+.gallery-item:nth-child(2) { grid-column: span 3; }
+.gallery-item:nth-child(3) { grid-column: span 4; }
+.gallery-item:nth-child(4) { grid-column: span 4; }
+.gallery-item:nth-child(5) { grid-column: span 4; }
+.gallery-item:nth-child(6) { grid-column: span 4; }
+
+/* ===== HORARIOS ===== */
+#horarios {
+  background: var(--ink-mid);
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  gap: 0;
+  padding: 0;
+}
+
+.horarios-info {
+  padding: 7rem 5rem;
+}
+
+.horarios-list {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.hora-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.hora-item:last-child { border-bottom: none; }
+
+.hora-day {
+  font-family: var(--ff-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.hora-time {
+  font-family: var(--ff-serif);
+  font-size: 1rem;
+  color: var(--cream);
+  font-weight: 300;
+}
+
+.hora-item.today .hora-day { color: var(--gold); }
+.hora-item.today .hora-time { color: var(--gold); }
+
+.horarios-divider {
+  background: var(--border);
+  width: 1px;
+}
+
+.location-info { padding: 7rem 5rem; }
+
+.location-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.location-icon {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+
+.location-text {
+  font-family: var(--ff-sans);
+  font-size: 0.7rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.location-text strong {
+  display: block;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.55rem;
+}
+
+.map-embed {
+  margin-top: 2rem;
+  width: 100%;
+  height: 220px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ===== TESTIMONIALS ===== */
+#testimonios {
+  background: var(--ink);
+  padding: 8rem 4rem;
+  text-align: center;
+}
+
+.testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.testimonio-card {
+  background: var(--ink-mid);
+  border: 1px solid var(--border);
+  padding: 3rem 2.5rem;
+  text-align: left;
+  transition: border-color 0.3s;
+}
+
+.testimonio-card:hover { border-color: var(--border-strong); }
+
+.stars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 1.5rem;
+  color: var(--gold);
+  font-size: 0.7rem;
+}
+
+.testimonio-text {
+  font-family: var(--ff-serif);
+  font-size: 1.05rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.testimonio-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ink-soft);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--ff-serif);
+  font-size: 1rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.author-name {
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: var(--cream);
+  display: block;
+}
+
+.author-detail {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  font-weight: 300;
+  display: block;
+  margin-top: 0.2rem;
+}
+
+/* ===== CTA BAND ===== */
+#cta-band {
+  background: var(--gold);
+  padding: 5rem 4rem;
+  text-align: center;
+}
+
+.cta-band-title {
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: 0.15em;
+  margin-bottom: 1rem;
+}
+
+.cta-band-sub {
+  font-family: var(--ff-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(10,10,8,0.6);
+  margin-bottom: 2.5rem;
+}
+
+.btn-dark {
+  display: inline-block;
+  font-family: var(--ff-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--cream);
+  background: var(--ink);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-dark:hover { background: var(--ink-mid); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--ink-mid);
+  border-top: 1px solid var(--border);
+  padding: 5rem 4rem 3rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 4rem;
+}
+
+.footer-brand-name {
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  font-weight: 400;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.footer-tagline {
+  font-family: var(--ff-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 260px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.social-link {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: all 0.3s;
+}
+
+.social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+.footer-col-title {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-links a {
+  font-family: var(--ff-sans);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-copy {
+  font-family: var(--ff-sans);
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
+
+/* ===== AI ASSISTANT FLOATING ===== */
+.ai-float {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 2000;
+}
+
+.ai-btn {
+  width: 56px;
+  height: 56px;
+  background: var(--gold);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  color: var(--ink);
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.ai-btn::before {
+  content: '';
+  position: absolute;
+  width: 70px; height: 70px;
+  border: 1px solid rgba(201,169,110,0.3);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0; }
+}
+
+.ai-btn:hover { background: var(--gold-light); transform: scale(1.05); }
+
+.ai-label {
+  font-family: var(--ff-sans);
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0.5rem;
+  display: block;
+  white-space: nowrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1100px) {
+  nav { padding: 1.5rem 2rem; }
+  nav.scrolled { padding: 1rem 2rem; }
+  .nav-links { gap: 1.5rem; }
+  section { padding: 6rem 2rem; }
+  #intro { grid-template-columns: 1fr; gap: 3rem; }
+  .intro-images { height: 400px; }
+  #reservaciones { grid-template-columns: 1fr; }
+  .reservation-visual { display: none; }
+  .reservation-form-wrap { padding: 5rem 2rem; }
+  #horarios { grid-template-columns: 1fr; }
+  .horarios-divider { display: none; }
+  .horarios-info, .location-info { padding: 5rem 2rem; }
+  .experience-grid { grid-template-columns: 1fr; }
+  .exp-card.featured { transform: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .testimonios-grid { grid-template-columns: 1fr; }
+}
+
+  @media (max-width: 768px) {
+  .cursor-dot, .cursor-ring { display: none; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-burger { display: block; color: var(--cream); font-size: 1.3rem; }
+  .hero-title { font-size: 3.5rem; letter-spacing: 0.05em; text-align: center; width: 100%; }
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .gallery-item { grid-column: span 1 !important; height: 200px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .menu-tabs { overflow-x: auto; justify-content: flex-start; }
+  .form-grid { grid-template-columns: 1fr; }
+}
+
+/* MOBILE NAV DRAWER */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,10,8,0.97);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.mobile-nav.open { opacity: 1; pointer-events: all; }
+
+.mobile-nav a {
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.mobile-nav a:hover { color: var(--gold); }
+
+.mobile-close {
+  position: absolute;
+  top: 2rem; right: 2rem;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* INPUT PLACEHOLDER */
+input::placeholder, textarea::placeholder { color: var(--text-dim); }
+select { color: var(--cream); }
+select option { color: var(--cream); background: #1a1a16; }
+</style>
+</head>
+<body>
+
+<!-- Cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="toggleMobileNav()">✕</button>
+  <a href="#menu" onclick="toggleMobileNav()">Menú</a>
+  <a href="#reservaciones" onclick="toggleMobileNav()">Reservar</a>
+  <a href="#galeria" onclick="toggleMobileNav()">Galería</a>
+  <a href="#horarios" onclick="toggleMobileNav()">Horarios</a>
+  <a href="#testimonios" onclick="toggleMobileNav()">Experiencias</a>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">SELVAGGIA</a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menú</a></li>
+    <li><a href="#reservaciones">Reservar</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#testimonios">Experiencias</a></li>
+  </ul>
+  <div style="display:flex; align-items:center; gap:0.6rem;">
+    <a href="tel:+523332539967" class="nav-phone"><span class="phone-emoji">📞</span> 33 3253 9967</a>
+   <a href="#reservaciones" class="nav-cta"><span>Reservar mesa</span></a>
+    </div>
+  <button class="nav-burger" onclick="toggleMobileNav()">☰</button>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-video-bg"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Cocina Mediterránea Premium · Zapopan, México</p>
+    <h1 class="hero-title">SELVAGGIA</h1>
+    <p class="hero-subtitle">Donde cada plato es una obra de arte</p>
+    <div class="hero-divider"></div>
+    <div class="hero-actions">
+    <a href="#reservaciones" class="btn-primary"><span>Reservar Mesa</span></a>
+    <a href="tel:+523332539967" class="btn-ph">
+     <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+     33 3253 9967
+   </a>
+      <a href="#menu" class="btn-outline">Ver Menú</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Descubrir</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Intro / About -->
+<section id="intro">
+  <div class="intro-images reveal-left">
+    <img class="intro-img-main" src="pasta.jpg" alt="Interior Selvaggia" />
+    <img class="intro-img-accent" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&q=80" alt="Cocina Selvaggia" />
+    <div class="intro-badge">
+      <span class="intro-badge-num">+1K</span>
+      <span class="intro-badge-text">experiencias únicas</span>
+    </div>
+  </div>
+  <div class="reveal">
+    <span class="section-label">Nuestra Historia</span>
+    <h2 class="section-title">Gastronomía de <em>lujo mediterráneo</em> en el corazón de Zapopan</h2>
+    <div class="gold-rule"></div>
+    <p class="section-body">
+      SELVAGGIA nació de la pasión por los sabores del Mediterráneo y la excelencia culinaria. Ubicados en el exclusivo Lobby 33 de Real Acueducto, ofrecemos una experiencia sensorial única donde la calidad de los ingredientes, la técnica y la elegancia se fusionan en cada platillo.
+    </p>
+    <div class="intro-stats">
+      <div class="stat-item">
+        <span class="stat-num">80+</span>
+        <span class="stat-label">Platillos en menú</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">5★</span>
+        <span class="stat-label">Experiencia premium</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Lobby<br>33</span>
+        <span class="stat-label">Ubicación exclusiva</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">7</span>
+        <span class="stat-label">Días a la semana</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Menu Section -->
+<section id="menu">
+  <div class="menu-header reveal">
+    <span class="section-label">Nuestra Propuesta</span>
+    <h2 class="section-title">El Menú <em>Selvaggia</em></h2>
+    <div class="gold-rule" style="margin:1.5rem auto;"></div>
+    <p class="section-body" style="margin:0 auto; text-align:center;">Ingredientes de primera calidad, técnicas mediterráneas y una presentación impecable que convierte cada platillo en una experiencia inolvidable.</p>
+  </div>
+
+  <div class="reveal">
+    <div class="menu-tabs">
+      <button class="menu-tab active" onclick="setTab('cortes')">Cortes</button>
+      <button class="menu-tab" onclick="setTab('platos')">Platos Fuertes</button>
+      <button class="menu-tab" onclick="setTab('entradas')">Entradas</button>
+      <button class="menu-tab" onclick="setTab('pastas')">Pastas</button>
+      <button class="menu-tab" onclick="setTab('frescos')">Raw Bar</button>
+      <button class="menu-tab" onclick="setTab('ensaladas')">Ensaladas</button>
+      <button class="menu-tab" onclick="setTab('pizzettas')">Pizzettas</button>
+      <button class="menu-tab" onclick="setTab('tacos')">Tacos</button>
+      <button class="menu-tab" onclick="setTab('cocteleria')">Coctelería</button>
+      <button class="menu-tab" onclick="setTab('infantil')">Infantil</button>
+    </div>
+  </div>
+
+  <!-- CORTES -->
+  <div class="menu-panel active" id="tab-cortes">
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Tomahawk</div>
+          <div class="menu-item-desc">El corte más imponente. Rib eye con costilla larga, marmoleo excepcional y sabor intenso.</div>
+          <span class="menu-item-tag">Signature · Premium</span>
+        </div>
+        <div class="menu-item-price">$3,120<small>1 kg</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Vacío</div>
+          <div class="menu-item-desc">Corte argentino de sabor robusto con textura firme.</div>
+        </div>
+        <div class="menu-item-price">$960 / $2,490<small>400g / 1kg</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">New York</div>
+          <div class="menu-item-desc">Corte clásico de res, tierno y bien marmoleado.</div>
+        </div>
+        <div class="menu-item-price">$760<small>350g</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Porterhouse</div>
+          <div class="menu-item-desc">Lo mejor de dos mundos: lomo y filete en un solo corte.</div>
+        </div>
+        <div class="menu-item-price">$2,100<small>1 kg</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Filete Australiano</div>
+          <div class="menu-item-desc">Filete premium de origen australiano, suave y delicado.</div>
+        </div>
+        <div class="menu-item-price">$890<small>250g</small></div>
+      </div>
+    </div>
+    <div style="margin-top:2rem;">
+      <div style="padding:1.5rem 2rem; border:1px solid var(--border); background:var(--ink-mid);">
+        <p style="font-family:var(--ff-sans); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem;">Guarniciones / Sides</p>
+        <div class="menu-grid">
+          <div class="menu-item reveal">
+            <div class="menu-item-info"><div class="menu-item-name" style="font-size:1rem;">Papas Trufadas</div></div>
+            <div class="menu-item-price" style="font-size:0.95rem;">$315</div>
+          </div>
+          <div class="menu-item reveal">
+            <div class="menu-item-info"><div class="menu-item-name" style="font-size:1rem;">Puré Selvaggia</div></div>
+            <div class="menu-item-price" style="font-size:0.95rem;">$115</div>
+          </div>
+          <div class="menu-item reveal">
+            <div class="menu-item-info"><div class="menu-item-name" style="font-size:1rem;">Vegetales al Grill con Pesto Griego</div></div>
+            <div class="menu-item-price" style="font-size:0.95rem;">$245</div>
+          </div>
+          <div class="menu-item reveal">
+            <div class="menu-item-info"><div class="menu-item-name" style="font-size:1rem;">Ensalada Mediterránea</div></div>
+            <div class="menu-item-price" style="font-size:0.95rem;">$110</div>
+          </div>
+          <div class="menu-item reveal">
+            <div class="menu-item-info"><div class="menu-item-name" style="font-size:1rem;">Patatas Selvaggia</div></div>
+            <div class="menu-item-price" style="font-size:0.95rem;">$85</div>
+          </div>
+          <div class="menu-item reveal">
+            <div class="menu-item-info"><div class="menu-item-name" style="font-size:1rem;">Zanahorias Rostizadas con Tahini</div></div>
+            <div class="menu-item-price" style="font-size:0.95rem;">$120</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATOS FUERTES -->
+  <div class="menu-panel" id="tab-platos">
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Costilla Selvaggia</div>
+          <div class="menu-item-desc">Short rib horneado 12 horas en fondo de vegetales, servido sobre puré y vegetales.</div>
+          <span class="menu-item-tag">Signature</span>
+        </div>
+        <div class="menu-item-price">$1,312<small>800g</small></div>
+      </div>
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Camarón Tigre al Grill</div>
+          <div class="menu-item-desc">Polenta con elote, salsa macha y brote de cilantro.</div>
+        </div>
+        <div class="menu-item-price">$1,800<small>400g</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Totoaba sobre Bisquet Ahumado</div>
+          <div class="menu-item-desc">Bisquet perfumado con chiles, arroz con almendra y escabeche de zucchini.</div>
+        </div>
+        <div class="menu-item-price">$590<small>200g</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Chuleta de Cordero en Costra de Almendras</div>
+          <div class="menu-item-desc">Acompañada con cous cous con pistache.</div>
+        </div>
+        <div class="menu-item-price">$495</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Salmón Sellado</div>
+          <div class="menu-item-desc">Espárrago, edamame, labneh, jugo de pepino y papa hasselback.</div>
+        </div>
+        <div class="menu-item-price">$360<small>200g</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pollo a la Parmesana</div>
+          <div class="menu-item-desc">Pechuga empanizada, salsa pomodoro y queso mozzarella, con ensalada y patatas.</div>
+        </div>
+        <div class="menu-item-price">$320<small>200g</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRADAS -->
+  <div class="menu-panel" id="tab-entradas">
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Aguachile de Rib Eye</div>
+          <div class="menu-item-desc">Rib eye sellado, pepino persa, chiles salteados, salsa ponzu y brotes.</div>
+          <span class="menu-item-tag">Chef's Favorite</span>
+        </div>
+        <div class="menu-item-price">$692</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Roll de Langosta</div>
+          <div class="menu-item-desc">Alioli, mantequilla de eneldo, sal de apio y coleslaw.</div>
+        </div>
+        <div class="menu-item-price">$634<small>100g</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Jamón Ibérico Pata Negra</div>
+          <div class="menu-item-desc">El mejor jamón ibérico, cortado a mano.</div>
+          <span class="menu-item-tag">Premium</span>
+        </div>
+        <div class="menu-item-price">$1,100<small>50g</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Burrata Mediterránea</div>
+          <div class="menu-item-desc">Gremolata, jitomates cherry, aceituna kalamata, pepino, cebolla morada, garbanzo crocante y pan campesino.</div>
+        </div>
+        <div class="menu-item-price">$340</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Tuétanos Selvaggia</div>
+          <div class="menu-item-desc">Tortillas y salsa macha.</div>
+          <span class="menu-item-tag">House Special</span>
+        </div>
+        <div class="menu-item-price">$425</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Tartare de Atún</div>
+          <div class="menu-item-desc">Ponzu picante, yema de mango, aguacate, crocante de camote, ajonjolí y wontón.</div>
+        </div>
+        <div class="menu-item-price">$218</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Mejillones con Cerveza Blanche</div>
+          <div class="menu-item-desc">Salsa de cerveza, ajo, mantequilla, albahaca y pan campesino.</div>
+        </div>
+        <div class="menu-item-price">$390</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pulpo Mediterráneo</div>
+          <div class="menu-item-desc">Tahini y polvo de limón negro.</div>
+        </div>
+        <div class="menu-item-price">$380</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Atún en Costra Furikake</div>
+          <div class="menu-item-desc">Salsa teriyaki, relish de mango y tapioca crocante.</div>
+        </div>
+        <div class="menu-item-price">$337</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Slider Selvaggia</div>
+          <div class="menu-item-desc">Mayonesa trufada, queso brie y pepinillos de la casa.</div>
+        </div>
+        <div class="menu-item-price">$241<small>2 pzas</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Carpaccio de Pulpo</div>
+          <div class="menu-item-desc">Aioli de chipotle tatemado, arugula y limoneta.</div>
+        </div>
+        <div class="menu-item-price">$249</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Tostadas de Atún</div>
+          <div class="menu-item-desc">Ponzu, cremoso de cacahuate, queso feta y aguacate.</div>
+        </div>
+        <div class="menu-item-price">$241</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASTAS -->
+  <div class="menu-panel" id="tab-pastas">
+    <div style="padding:1rem 0 2rem; font-family:var(--ff-serif); font-size:1rem; font-style:italic; color:var(--text-muted); text-align:center;">
+      Todas nuestras pastas son elaboradas en casa con opción vegetariana disponible.
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Capellini con Caviar Beluga</div>
+          <div class="menu-item-desc">Crème fraîche, eneldo y espuma de vodka.</div>
+          <span class="menu-item-tag">Ultra Premium · 10g caviar</span>
+        </div>
+        <div class="menu-item-price">$4,280</div>
+      </div>
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Risotto con Langosta</div>
+          <div class="menu-item-desc">Azafrán y hongos de temporada.</div>
+          <span class="menu-item-tag">Premium</span>
+        </div>
+        <div class="menu-item-price">$1,095</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Selvaggia Padano</div>
+          <div class="menu-item-desc">Pasta fresca servida sobre queso grana padano y aceite de trufa.</div>
+        </div>
+        <div class="menu-item-price">$518</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Ravioles al Pesto</div>
+          <div class="menu-item-desc">Rellenos de ricotta y espinaca con lajas de picaña al grill.</div>
+        </div>
+        <div class="menu-item-price">$471</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Fusilli Frutti di Mare</div>
+          <div class="menu-item-desc">Salsa marinara, calamar, almeja, mejillón y camarón.</div>
+        </div>
+        <div class="menu-item-price">$465</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Fetucchini Chavroux</div>
+          <div class="menu-item-desc">Salsa de queso de cabra doble crema, cebollín y jamón ibérico.</div>
+        </div>
+        <div class="menu-item-price">$453</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Fetucchini Carbonara</div>
+          <div class="menu-item-desc">Hongos cremini, pecorino y láminas de pork belly.</div>
+        </div>
+        <div class="menu-item-price">$340</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RAW BAR -->
+  <div class="menu-panel" id="tab-frescos">
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Caviar Beluga</div>
+          <div class="menu-item-desc">El caviar más exclusivo del mundo.</div>
+          <span class="menu-item-tag">Ultra Premium</span>
+        </div>
+        <div class="menu-item-price">$12,500 / $24,000 / $37,500<small>30g / 60g / 90g</small></div>
+      </div>
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Langosta de Maine</div>
+          <div class="menu-item-desc">Opciones: Zarandeada o Mantequilla Selvaggia.</div>
+          <span class="menu-item-tag">Premium · Por kilo</span>
+        </div>
+        <div class="menu-item-price">$5,275<small>por kg</small></div>
+      </div>
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">King Crab</div>
+          <div class="menu-item-desc">El rey de los mariscos.</div>
+          <span class="menu-item-tag">Premium</span>
+        </div>
+        <div class="menu-item-price">$2,500 / $5,000<small>½kg / 1kg</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Ostiones Kumamoto</div>
+          <div class="menu-item-desc">Con limón Eureka, salsa Tabasco, mignonette y marisquera.</div>
+        </div>
+        <div class="menu-item-price">$210<small>4 pzas</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Ostiones San Blas</div>
+          <div class="menu-item-desc">Frescos o a las brasas: zarandeado, mantequilla Selvaggia, Rockefeller.</div>
+        </div>
+        <div class="menu-item-price">$165 / $295<small>4 / 8 pzas</small></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Sashimi de Hamachi</div>
+          <div class="menu-item-desc">Arugula, pepino, cilantro criollo, salsa maracuyá y ponzu.</div>
+        </div>
+        <div class="menu-item-price">$320</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Aguachile de Camarón</div>
+          <div class="menu-item-desc">Salsa tatemada negra o verde cremoso.</div>
+        </div>
+        <div class="menu-item-price">$320</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENSALADAS -->
+  <div class="menu-panel" id="tab-ensaladas">
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Ensalada Selvaggia</div>
+          <div class="menu-item-desc">Gravlax de salmón, toronja, aguacate, tahini, cacahuate, nuez de la india y wontón.</div>
+          <span class="menu-item-tag">Signature</span>
+        </div>
+        <div class="menu-item-price">$210</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Ensalada Verde</div>
+          <div class="menu-item-desc">Manzana verde, queso de cabra madurado, arándano, pepino, hierbas frescas, nuez caramelizada y vinagreta de frambuesa.</div>
+        </div>
+        <div class="menu-item-price">$195</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Ensalada de Betabel</div>
+          <div class="menu-item-desc">Betabel, hinojo, albahaca, limón Eureka y jamaica balsámica.</div>
+        </div>
+        <div class="menu-item-price">$170</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIZZETTAS -->
+  <div class="menu-panel" id="tab-pizzettas">
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pizzetta de Trufa Negra</div>
+          <div class="menu-item-desc">Queso taleggio, grana padano, pecorino y aceite de trufa. Trufa rallada en mesa +$250 MXN.</div>
+          <span class="menu-item-tag">Premium · Trufa fresca disponible</span>
+        </div>
+        <div class="menu-item-price">$1,690</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pizzetta de Aguacate</div>
+          <div class="menu-item-desc">Labneh, harissa verde y albahaca.</div>
+        </div>
+        <div class="menu-item-price">$450</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pizzetta de Jamón Serrano</div>
+          <div class="menu-item-desc">Pomodoro, mozzarella, arúgula y parmesano.</div>
+        </div>
+        <div class="menu-item-price">$380</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pizzetta Margarita</div>
+          <div class="menu-item-desc">Pomodoro, mozzarella y albahaca fresca.</div>
+        </div>
+        <div class="menu-item-price">$249</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TACOS -->
+  <div class="menu-panel" id="tab-tacos">
+    <div class="menu-grid">
+      <div class="menu-item menu-premium reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Taco de Ribeye</div>
+          <div class="menu-item-desc">Costra de mozzarella, aguacate y salsa macha.</div>
+          <span class="menu-item-tag">Premium</span>
+        </div>
+        <div class="menu-item-price">$280</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Taco de Pulpo a las Brasas</div>
+          <div class="menu-item-desc">Adobo mediterráneo y aioli macha.</div>
+        </div>
+        <div class="menu-item-price">$180</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Taco de Camarón</div>
+          <div class="menu-item-desc">Salsa mornay, jardín silvestre y salsa macha.</div>
+        </div>
+        <div class="menu-item-price">$125</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Taco de Pork Belly</div>
+          <div class="menu-item-desc">Costra de mozzarella y salsa stout.</div>
+        </div>
+        <div class="menu-item-price">$85</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COCTELERIA -->
+  <div class="menu-panel" id="tab-cocteleria">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:3rem;">
+      <div>
+        <p style="font-family:var(--ff-sans); font-size:0.55rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">Clásicos</p>
+        <div class="menu-grid" style="grid-template-columns:1fr;">
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Old Fashioned</div><div class="menu-item-desc">Makers Mark, azúcar morena y angostura.</div></div><div class="menu-item-price">$220</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Negroni</div><div class="menu-item-desc">Tanqueray 10, Carpano Antica Formula y Campari.</div></div><div class="menu-item-price">$250</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Manhattan</div><div class="menu-item-desc">Makers Mark, Carpano Antica Formula y angostura.</div></div><div class="menu-item-price">$240</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Dry Martini</div><div class="menu-item-desc">Tanqueray 10, Carpano Dry y aceitunas.</div></div><div class="menu-item-price">$250</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Vesper Martini</div><div class="menu-item-desc">Tanqueray 10, Carpano Dry, Lillet Blanc y Belvedere.</div></div><div class="menu-item-price">$250</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Cosmopolitan</div><div class="menu-item-desc">Belvedere, jugo de arándano, Cointreau y limón.</div></div><div class="menu-item-price">$240</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Moscow Mule</div><div class="menu-item-desc">Belvedere, limón, jarabe natural, menta y cerveza de jengibre.</div></div><div class="menu-item-price">$230</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">French 75</div><div class="menu-item-desc">Tanqueray 10, vino espumoso, jarabe natural y limón.</div></div><div class="menu-item-price">$220</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Sidecar</div><div class="menu-item-desc">Hennessy VS, Cointreau, jarabe natural y limón.</div></div><div class="menu-item-price">$270</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Sazerac</div><div class="menu-item-desc">Hennessy VS, absinth, azúcar y bitter de naranja.</div></div><div class="menu-item-price">$250</div></div>
+        </div>
+      </div>
+      <div>
+        <p style="font-family:var(--ff-sans); font-size:0.55rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin-bottom:1.5rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border);">Selvaggia Originals</p>
+        <div class="menu-grid" style="grid-template-columns:1fr;">
+          <div class="menu-item menu-premium reveal"><div class="menu-item-info"><div class="menu-item-name">Mezcal Rubí</div><div class="menu-item-desc">Unión Joven, arándano, cordial de jamaica, canela, miel de agave y limón.</div></div><div class="menu-item-price">$250</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Raíz de Jaguar</div><div class="menu-item-desc">Unión Joven, maracuyá, jengibre, miel de agave y menta.</div></div><div class="menu-item-price">$250</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Tigre Amarillo</div><div class="menu-item-desc">Unión Joven, licor de chile ancho, piña, limón, miel de agave y sal de chapulín.</div></div><div class="menu-item-price">$250</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Midnight Boulevardier</div><div class="menu-item-desc">Johnnie Walker Black, Carpano Antica Formula, Campari y licor de cacao blanco.</div></div><div class="menu-item-price">$230</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Nior de Lychee</div><div class="menu-item-desc">Belvedere, lychee, zarzamora, limón, jarabe y sake Nami Nigori.</div></div><div class="menu-item-price">$210</div></div>
+        </div>
+        <p style="font-family:var(--ff-sans); font-size:0.55rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--gold); margin:2rem 0 1.5rem; padding-top:1.5rem; padding-bottom:0.5rem; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">Digestivos</p>
+        <div class="menu-grid" style="grid-template-columns:1fr;">
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Espresso Martini</div><div class="menu-item-desc">Belvedere, licor de café, espresso y jarabe natural.</div></div><div class="menu-item-price">$180</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">After Selvaggia</div><div class="menu-item-desc">Licor 43, espresso y Licor 43 Horchata.</div></div><div class="menu-item-price">$190</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Carajillo</div><div class="menu-item-desc">Licor 43 y espresso.</div></div><div class="menu-item-price">$180</div></div>
+          <div class="menu-item reveal"><div class="menu-item-info"><div class="menu-item-name">Canija</div><div class="menu-item-desc">Baileys y espresso.</div></div><div class="menu-item-price">$180</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFANTIL -->
+  <div class="menu-panel" id="tab-infantil">
+    <div class="menu-grid">
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Slider Infantil</div>
+          <div class="menu-item-desc">Queso cheddar, jitomate, lechuga, pepinillos y papas gajo.</div>
+        </div>
+        <div class="menu-item-price">$180</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Fusilli Infantil</div>
+          <div class="menu-item-desc">Opciones: Alfredo, Pomodoro o Al burro.</div>
+        </div>
+        <div class="menu-item-price">$125</div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="menu-item-info">
+          <div class="menu-item-name">Pechuga de Pollo a la Plancha</div>
+          <div class="menu-item-desc">Acompañada de papas gajo.</div>
+        </div>
+        <div class="menu-item-price">$155</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="experience-inner">
+    <div style="max-width:600px;" class="reveal">
+      <span class="section-label">¿Por qué SELVAGGIA?</span>
+      <h2 class="section-title">Una <em>experiencia</em> que trasciende la gastronomía</h2>
+    </div>
+    <div class="experience-grid">
+      <div class="exp-card reveal">
+        <span class="exp-num">01</span>
+        <div class="exp-title">Ingredientes de Origen</div>
+        <p class="exp-text">Seleccionamos los mejores ingredientes del mundo: caviar beluga, langosta de Maine, jamón ibérico pata negra y trufa negra fresca traída directamente de Europa.</p>
+      </div>
+      <div class="exp-card featured reveal">
+        <span class="exp-num">02</span>
+        <div class="exp-title">Técnica Mediterránea</div>
+        <p class="exp-text">Nuestro equipo de chefs fusiona las tradiciones culinarias del Mediterráneo con técnicas modernas de vanguardia, creando platillos únicos que despiertan todos los sentidos en un ambiente exclusivo.</p>
+        <div class="gold-rule" style="margin-top:2rem;"></div>
+      </div>
+      <div class="exp-card reveal">
+        <span class="exp-num">03</span>
+        <div class="exp-title">Atmósfera Única</div>
+        <p class="exp-text">Lobby 33 en Real Acueducto ofrece el ambiente perfecto: elegante, íntimo y sofisticado. Cada rincón de SELVAGGIA ha sido diseñado para crear momentos memorables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reservations -->
+<section id="reservaciones">
+  <div class="reservation-visual"></div>
+  <div class="reservation-form-wrap">
+    <span class="section-label">Reservaciones</span>
+    <h2 class="form-title">Reserve su <em style="font-style:italic; color:var(--gold-light);">mesa</em></h2>
+    <p class="form-subtitle">Garantice su lugar en una experiencia gastronómica única. Confirmación inmediata vía WhatsApp o correo electrónico.</p>
+    <div class="form-grid" id="reservationForm">
+      <div class="form-group">
+        <label>Nombre completo *</label>
+        <input type="text" id="resName" placeholder="Su nombre" required />
+      </div>
+      <div class="form-group">
+        <label>Teléfono / WhatsApp *</label>
+        <input type="tel" id="resPhone" placeholder="+52 33..." required />
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" id="resEmail" placeholder="correo@ejemplo.com" />
+      </div>
+      <div class="form-group">
+        <label>Número de personas *</label>
+        <select id="resGuests">
+          <option value="">Seleccionar</option>
+          <option>1 persona</option>
+          <option>2 personas</option>
+          <option>3 personas</option>
+          <option>4 personas</option>
+          <option>5 personas</option>
+          <option>6 personas</option>
+          <option>7-10 personas</option>
+          <option>Más de 10</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Fecha *</label>
+        <input type="date" id="resDate" required />
+      </div>
+      <div class="form-group">
+        <label>Hora *</label>
+        <select id="resTime">
+          <option value="">Seleccionar hora</option>
+          <option>2:00 PM</option>
+          <option>2:30 PM</option>
+          <option>3:00 PM</option>
+          <option>3:30 PM</option>
+          <option>4:00 PM</option>
+          <option>5:00 PM</option>
+          <option>6:00 PM</option>
+          <option>7:00 PM</option>
+          <option>7:30 PM</option>
+          <option>8:00 PM</option>
+          <option>8:30 PM</option>
+          <option>9:00 PM</option>
+          <option>9:30 PM</option>
+          <option>10:00 PM</option>
+          <option>10:30 PM</option>
+          <option>11:00 PM</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ocasión especial</label>
+        <select id="resOccasion">
+          <option value="">Sin ocasión especial</option>
+          <option>Cumpleaños</option>
+          <option>Aniversario</option>
+          <option>Cena romántica</option>
+          <option>Reunión de negocios</option>
+          <option>Evento privado</option>
+          <option>Propuesta</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Alergias / Restricciones</label>
+        <input type="text" id="resAllergies" placeholder="Gluten, lácteos, mariscos..." />
+      </div>
+      <div class="form-group full">
+        <label>Solicitudes especiales</label>
+        <textarea id="resNotes" placeholder="Decoración especial, preferencias de mesa, otras indicaciones..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitReservation()">Confirmar Reservación</button>
+    </div>
+    <p class="form-note">Al confirmar, recibirá un mensaje de WhatsApp con los detalles. Para reservaciones de grupo mayor a 10 personas o eventos privados, llame al restaurante. Precio mínimo de consumo: $1,000 MXN por persona.</p>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section id="galeria">
+  <div class="gallery-header reveal">
+    <span class="section-label">Galería</span>
+    <h2 class="section-title">La <em>estética</em> de SELVAGGIA</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item reveal"><img src="cor.jpg" alt="Corte premium" /></div>
+    <div class="gallery-item reveal"><img src="tun.jpg" alt="Platillo gourmet" /></div>
+    <div class="gallery-item reveal"><img src="licc.jpg" alt="Interior restaurante" /></div>
+    <div class="gallery-item reveal"><img src="cho.jpg" alt="Mariscos frescos" /></div>
+    <div class="gallery-item reveal"><img src="panterrr.jpg" alt="Cócteles artesanales" /></div>
+    <div class="gallery-item reveal"><img src="vsta.jpg" alt="Ambiente nocturno" /></div>
+  </div>
+</section>
+
+<!-- Hours & Location -->
+<section id="horarios">
+  <div class="horarios-info reveal-left">
+    <span class="section-label">Horarios</span>
+    <h2 class="section-title">Nos visita <em>cuando quiera</em></h2>
+    <div class="gold-rule"></div>
+    <div class="horarios-list">
+      <div class="hora-item"><span class="hora-day">Lunes</span><span class="hora-time">2:00 PM – 11:30 PM</span></div>
+      <div class="hora-item"><span class="hora-day">Martes</span><span class="hora-time">2:00 PM – 11:30 PM</span></div>
+      <div class="hora-item"><span class="hora-day">Miércoles</span><span class="hora-time">2:00 PM – 11:30 PM</span></div>
+      <div class="hora-item"><span class="hora-day">Jueves</span><span class="hora-time">2:00 PM – 12:00 AM</span></div>
+      <div class="hora-item"><span class="hora-day">Viernes</span><span class="hora-time">2:00 PM – 12:00 AM</span></div>
+      <div class="hora-item"><span class="hora-day">Sábado</span><span class="hora-time">2:00 PM – 12:30 AM</span></div>
+      <div class="hora-item"><span class="hora-day">Domingo</span><span class="hora-time">2:00 PM – 10:30 PM</span></div>
+    </div>
+  </div>
+  <div class="horarios-divider"></div>
+  <div class="location-info reveal-right">
+    <span class="section-label">Ubicación</span>
+    <h2 class="section-title">Encuéntrenos <em>aquí</em></h2>
+    <div class="gold-rule"></div>
+    <div style="margin-top:2rem;">
+      <div class="location-detail">
+        <div class="location-icon">📍</div>
+        <div class="location-text">
+          <strong>Dirección</strong>
+          Av. Patria 1891 interior 313<br>Real Acueducto, 45116 Zapopan, Jalisco<br><em style="color:var(--gold); font-family:var(--ff-serif); font-style:italic;">Lobby 33</em>
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-icon">📞</div>
+        <div class="location-text">
+          <strong>Reservaciones</strong>
+          Llame o escriba por WhatsApp<br>Respuesta inmediata
+        </div>
+      </div>
+      <div class="location-detail">
+        <div class="location-icon">💰</div>
+        <div class="location-text">
+          <strong>Precio Promedio</strong>
+          +$1,000 MXN por persona<br>Todas las tarjetas de crédito · Apple Pay · Google Pay
+        </div>
+      </div>
+    </div>
+    <div class="map-embed">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.4938!2d-103.4152!3d20.7072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae4b6e5b1e3d%3A0x1!2sAv.+Patria+1891%2C+Zapopan%2C+Jal.!5e0!3m2!1ses!2smx!4v1700000000000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDQxJzA0LjIiTiAxMDPCsDI0JzU1LjQiVw!5e0!3m2!1ses!2smx!4v1234567890" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <a href="https://www.google.com/maps/search/Av.+Patria+1891+interior+313,+Real+Acueducto,+45116+Zapopan,+Jalisco,+M%C3%A9xico" target="_blank" class="btn-outline" style="display:inline-block; margin-top:1.5rem;">Ver en Google Maps</a>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section id="testimonios">
+  <div class="reveal">
+    <span class="section-label">Experiencias</span>
+    <h2 class="section-title">Lo que dicen <em>nuestros comensales</em></h2>
+  </div>
+  <div class="testimonios-grid">
+    <div class="testimonio-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonio-text">"El Tomahawk fue una experiencia sublime. La presentación, el punto de cocción, los sabores... Todo impecable. Sin duda el mejor restaurante de Zapopan."</p>
+      <div class="testimonio-author">
+        <div class="author-avatar">MC</div>
+        <div>
+          <span class="author-name">María C.</span>
+          <span class="author-detail">Empresaria · Guadalajara</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonio-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonio-text">"El capellini con caviar beluga es algo que no olvidaré. El servicio, el ambiente y la coctelería están a la altura de restaurantes en París o Madrid. Bravo."</p>
+      <div class="testimonio-author">
+        <div class="author-avatar">JR</div>
+        <div>
+          <span class="author-name">Juan R.</span>
+          <span class="author-detail">Directivo · CDMX</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonio-card reveal">
+      <div class="stars">★★★★★</div>
+      <p class="testimonio-text">"Para nuestra cena de aniversario elegimos SELVAGGIA y fue la decisión perfecta. La atención personalizada, la burrata mediterránea y el mezcal Rubí fueron memorables."</p>
+      <div class="testimonio-author">
+        <div class="author-avatar">AL</div>
+        <div>
+          <span class="author-name">Ana L.</span>
+          <span class="author-detail">Arquitecta · Zapopan</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Band -->
+<div id="cta-band">
+  <p class="cta-band-title">SELVAGGIA</p>
+  <p class="cta-band-sub">Reserve su mesa y viva la experiencia mediterránea de lujo</p>
+  <a href="#reservaciones" class="btn-dark">Reservar ahora</a>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-brand-name">SELVAGGIA</span>
+      <p class="footer-tagline">Cocina mediterránea de lujo en el corazón de Zapopan. Ingredientes excepcionales, técnica impecable, momentos únicos.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/selvaggia.gdl" class="social-link" aria-label="Instagram">IG</a>
+        <a href="https://www.facebook.com/61585499336129" class="social-link" aria-label="Facebook">FB</a>
+        <a href="https://www.tiktok.com/@selvaggia.gdl" class="social-link" aria-label="TikTok">TK</a>
+        <a href="https://wa.me/523332539967" class="social-link" aria-label="WhatsApp">WA</a>
+      </div>
+    </div>
+    <div>
+      <span class="footer-col-title">Menú</span>
+      <ul class="footer-links">
+        <li><a href="#menu">Cortes Premium</a></li>
+        <li><a href="#menu">Mariscos & Raw Bar</a></li>
+        <li><a href="#menu">Pastas Artesanales</a></li>
+        <li><a href="#menu">Entradas</a></li>
+        <li><a href="#menu">Coctelería</a></li>
+        <li><a href="#menu">Menú Infantil</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Restaurante</span>
+      <ul class="footer-links">
+        <li><a href="#intro">Nuestra Historia</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#horarios">Horarios</a></li>
+        <li><a href="#horarios">Ubicación</a></li>
+        <li><a href="#testimonios">Reseñas</a></li>
+      </ul>
+    </div>
+    <div>
+      <span class="footer-col-title">Reservar</span>
+      <ul class="footer-links">
+        <li><a href="#reservaciones">Mesa para 2</a></li>
+        <li><a href="#reservaciones">Grupos & Eventos</a></li>
+        <li><a href="#reservaciones">Cenas Privadas</a></li>
+        <li><a href="#reservaciones">Celebraciones</a></li>
+        <li><a href="tel:+523332539967">Llamar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 SELVAGGIA · Av. Patria 1891, Lobby 33, Zapopan, Jalisco · Todos los derechos reservados</span>
+    <span class="footer-copy" style="opacity:0.5;">Diseñado con excelencia</span>
+  </div>
+</footer>
+  
+<!-- BOTÓN FLOTANTE PAGAR -->
+<div style="position:fixed;bottom:2rem;right:2rem;z-index:999;display:flex;flex-direction:column;align-items:center;gap:4px;">
+  <button onclick="document.getElementById('pagoModal').style.display='flex'" style="width:56px;height:56px;background:#c9a96e;border:none;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#0a0a08" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+  </button>
+  <span style="font-family:'Montserrat',sans-serif;font-size:0.42rem;letter-spacing:0.15em;color:#c9a96e;text-transform:uppercase;">Pagar</span>
+</div>
+
+<!-- MODAL SISTEMA DE PAGO SELVAGGIA -->
+<div id="pagoModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9998;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;">
+<div style="background:#0a0a08;border:0.5px solid #2a2a22;border-radius:16px;width:100%;max-width:480px;font-family:'Montserrat',sans-serif;overflow:hidden;margin:auto;position:relative;">
+
+  <button onclick="document.getElementById('pagoModal').style.display='none'" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:#6a6050;font-size:1.1rem;cursor:pointer;z-index:10;">✕</button>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;border-bottom:0.5px solid #2a2a22;">
+    <button id="sv-tab-m" onclick="svPedirPass()" style="padding:1rem;text-align:center;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:#6a6050;border:none;border-bottom:0.5px solid #2a2a22;background:none;cursor:pointer;font-family:'Montserrat',sans-serif;">🔒 Mesero</button>
+    <button id="sv-tab-c" onclick="svSetTab('cliente')" style="padding:1rem;text-align:center;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:#c9a96e;border:none;border-bottom:1px solid #c9a96e;background:none;cursor:pointer;font-family:'Montserrat',sans-serif;">Cliente</button>
+  </div>
+
+  <!-- PANEL MESERO -->
+  <div id="sv-panel-mesero" style="display:none;padding:1.2rem;">
+    <div id="sv-vista-mesas">
+      <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:10px;">Selecciona una mesa</div>
+      <div id="sv-mesa-grid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:1rem;"></div>
+      <div style="display:flex;align-items:center;gap:10px;font-size:0.48rem;color:#4a4840;">
+        <span style="color:#c9a96e;">●</span> Ocupada &nbsp;<span style="color:#3a3830;">●</span> Libre
+      </div>
+    </div>
+    <div id="sv-vista-comanda" style="display:none;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:1rem;">
+        <button onclick="svVolverMesas()" style="background:none;border:0.5px solid #2a2a22;border-radius:6px;padding:0.4rem 0.7rem;font-family:'Montserrat',sans-serif;font-size:0.48rem;color:#6a6050;cursor:pointer;">← Mesas</button>
+        <div style="font-size:0.65rem;color:#c9a96e;font-weight:500;" id="sv-comanda-title">Mesa 1</div>
+      </div>
+      <div style="background:#111109;border:1px solid #c9a96e;border-radius:10px;padding:1rem;text-align:center;margin:0.8rem 0;">
+        <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;">Código único del cliente</div>
+        <div id="sv-codigo-mesa" style="font-size:2rem;font-weight:600;color:#c9a96e;letter-spacing:0.3em;">------</div>
+        <div style="font-size:0.45rem;color:#4a4840;margin-top:4px;letter-spacing:0.1em;">Muéstrale este QR al cliente</div>
+        <div id="sv-qr-container" style="margin-top:0.8rem;display:flex;justify-content:center;align-items:center;"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 65px auto;gap:5px;margin-bottom:0.8rem;align-items:end;">
+        <input id="sv-plat-input" placeholder="Platillo" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:0.75rem;outline:none;"/>
+        <input id="sv-prec-input" placeholder="$" type="number" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:0.75rem;outline:none;"/>
+        <button onclick="svAgregarManual()" style="background:#c9a96e;border:none;border-radius:6px;padding:0.6rem 0.7rem;font-family:'Montserrat',sans-serif;font-size:0.48rem;letter-spacing:0.12em;text-transform:uppercase;color:#0a0a08;font-weight:600;cursor:pointer;white-space:nowrap;">+ Add</button>
+      </div>
+      <div id="sv-cats" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.7rem;"></div>
+      <div id="sv-plats" style="display:none;margin-bottom:0.7rem;max-height:200px;overflow-y:auto;"></div>
+      <div id="sv-lista-comanda"></div>
+      <div id="sv-empty-comanda" style="font-size:0.62rem;color:#3a3830;text-align:center;padding:0.5rem 0;">Agrega platillos</div>
+      <div style="background:#111109;border:0.5px solid #2a2a22;border-radius:8px;padding:0.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;margin:0.8rem 0;">
+        <span style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;">Total</span>
+        <span id="sv-total-comanda" style="font-size:1.1rem;color:#c9a96e;font-weight:600;">$0</span>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <button onclick="svLimpiarMesa()" style="flex:1;background:none;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem;font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.12em;text-transform:uppercase;color:#6a6050;cursor:pointer;">Limpiar</button>
+        <button onclick="svEnviarCliente()" style="flex:2;background:#c9a96e;border:none;border-radius:6px;padding:0.6rem;font-family:'Montserrat',sans-serif;font-size:0.46rem;letter-spacing:0.15em;text-transform:uppercase;color:#0a0a08;font-weight:600;cursor:pointer;">Enviar al cliente ↗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL CLIENTE -->
+  <div id="sv-panel-cliente" style="display:block;padding:1.2rem;">
+    <div id="sv-cl-login" style="text-align:center;padding:0.5rem 0;">
+      <div style="font-size:0.85rem;letter-spacing:0.4em;color:#c9a96e;font-weight:500;margin-bottom:0.2rem;">✦ SELVAGGIA</div>
+      <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;">Cocina Mediterránea Premium</div>
+      <div style="width:30px;height:0.5px;background:#c9a96e;margin:0.7rem auto 1.2rem;"></div>
+      <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Ingresa el código de tu mesa</div>
+      <input id="sv-cl-code" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.65rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:1.2rem;letter-spacing:0.3em;font-weight:600;text-align:center;outline:none;margin-bottom:0.8rem;" placeholder="Ej: 298576" maxlength="6" onkeydown="if(event.key==='Enter')svVerificarCodigo()" />
+      <button onclick="svVerificarCodigo()" style="width:100%;background:#c9a96e;border:none;border-radius:6px;padding:0.7rem;font-family:'Montserrat',sans-serif;font-size:0.52rem;letter-spacing:0.18em;text-transform:uppercase;color:#0a0a08;font-weight:600;cursor:pointer;margin-bottom:0.6rem;">Acceder a mi cuenta</button>
+      <div style="display:flex;align-items:center;gap:8px;margin:0.6rem 0;">
+        <div style="flex:1;height:0.5px;background:#2a2a22;"></div>
+        <span style="font-size:0.45rem;color:#4a4840;letter-spacing:0.1em;text-transform:uppercase;">o</span>
+        <div style="flex:1;height:0.5px;background:#2a2a22;"></div>
+      </div>
+      <button onclick="svAbrirScanner()" style="width:100%;background:none;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem;font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#6a6050;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3m0 4h4v-4m-4 0h-3"/></svg>
+        Escanear QR con cámara
+      </button>
+      <p id="sv-cl-error" style="display:none;color:#c0392b;font-size:0.52rem;margin-top:0.7rem;letter-spacing:0.1em;">Código incorrecto</p>
+    </div>
+    <div id="sv-cl-cuenta" style="display:none;">
+      <div style="display:flex;align-items:center;margin-bottom:0.8rem;">
+        <span style="width:7px;height:7px;background:#4caf50;border-radius:50%;display:inline-block;margin-right:5px;animation:svblink 1.2s infinite;"></span>
+        <span style="font-size:0.5rem;letter-spacing:0.15em;color:#4caf50;text-transform:uppercase;">En vivo</span>
+        <span id="sv-cl-mesa-label" style="margin-left:auto;font-size:0.5rem;letter-spacing:0.2em;color:#4a4840;text-transform:uppercase;"></span>
+        <button onclick="svSalirCuenta()" style="background:none;border:none;color:#4a4840;font-size:0.45rem;cursor:pointer;margin-left:8px;letter-spacing:0.1em;text-transform:uppercase;font-family:'Montserrat',sans-serif;">Salir</button>
+      </div>
+      <div id="sv-cl-items"></div>
+      <div id="sv-cl-empty" style="display:none;font-size:0.62rem;color:#3a3830;text-align:center;padding:0.5rem 0;">Esperando platillos...</div>
+      <div style="background:#111109;border:0.5px solid #2a2a22;border-radius:8px;padding:0.9rem 1.1rem;display:flex;justify-content:space-between;align-items:center;margin:0.8rem 0;">
+        <span style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;">Total a pagar</span>
+        <span id="sv-cl-total" style="font-size:1.1rem;color:#c9a96e;font-weight:600;">$0</span>
+      </div>
+      <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:5px;">Número de tarjeta</div>
+      <input placeholder="0000  0000  0000  0000" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:0.78rem;box-sizing:border-box;margin-bottom:0.7rem;outline:none;"/>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0.7rem;">
+        <div><div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:5px;">Vencimiento</div><input placeholder="MM / AA" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:0.78rem;box-sizing:border-box;outline:none;"/></div>
+        <div><div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:5px;">CVV</div><input placeholder="···" type="password" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:0.78rem;box-sizing:border-box;outline:none;"/></div>
+      </div>
+      <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:5px;">Nombre en la tarjeta</div>
+      <input placeholder="Como aparece en la tarjeta" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.6rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:0.78rem;box-sizing:border-box;margin-bottom:0.8rem;outline:none;"/>
+      <button style="width:100%;background:#c9a96e;border:none;border-radius:6px;padding:1rem;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.22em;text-transform:uppercase;color:#0a0a08;font-weight:600;cursor:pointer;">Pagar ahora</button>
+      <div style="text-align:center;margin-top:0.7rem;font-size:0.45rem;color:#4a4840;text-transform:uppercase;">🔒 Pago seguro SSL</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SCANNER OVERLAY -->
+<div id="sv-scanner-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.97);z-index:99999;align-items:center;justify-content:center;flex-direction:column;padding:1rem;">
+  <div style="font-size:0.85rem;letter-spacing:0.4em;color:#c9a96e;margin-bottom:0.5rem;font-weight:500;font-family:'Montserrat',sans-serif;">✦ SELVAGGIA</div>
+  <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1rem;font-family:'Montserrat',sans-serif;">Apunta al código QR de tu mesa</div>
+  <div style="position:relative;width:100%;max-width:300px;border-radius:12px;overflow:hidden;border:2px solid #c9a96e;">
+    <video id="sv-qr-video" style="width:100%;display:block;" playsinline autoplay></video>
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#c9a96e;animation:svScan 2s linear infinite;opacity:0.8;"></div>
+    <canvas id="sv-qr-canvas" style="display:none;"></canvas>
+  </div>
+  <p id="sv-scan-status" style="font-size:0.55rem;color:#6a6050;text-align:center;margin-top:0.8rem;letter-spacing:0.1em;max-width:280px;font-family:'Montserrat',sans-serif;">Buscando código QR...</p>
+  <button onclick="svCerrarScanner()" style="margin-top:1rem;padding:0.7rem 2rem;background:none;border:0.5px solid #2a2a22;border-radius:6px;font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#6a6050;cursor:pointer;">Cancelar</button>
+</div>
+
+<!-- CONTRASEÑA OVERLAY -->
+<div id="sv-pass-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:99999;align-items:center;justify-content:center;">
+  <div style="background:#0a0a08;border:0.5px solid #2a2a22;border-radius:12px;padding:1.8rem;width:90%;max-width:300px;font-family:'Montserrat',sans-serif;">
+    <div style="font-size:0.85rem;letter-spacing:0.4em;color:#c9a96e;text-align:center;margin-bottom:0.2rem;">✦ SELVAGGIA</div>
+    <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;text-align:center;margin-bottom:1rem;">Acceso Mesero</div>
+    <div style="width:30px;height:0.5px;background:#c9a96e;margin:0 auto 1.2rem;"></div>
+    <div style="color:#6a6050;font-size:0.5rem;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:6px;">Contraseña</div>
+    <input id="sv-pass-input" type="password" placeholder="••••••••" style="width:100%;background:#111109;border:0.5px solid #2a2a22;border-radius:6px;padding:0.65rem 0.9rem;color:#e8e0d0;font-family:'Montserrat',sans-serif;font-size:0.8rem;outline:none;margin-bottom:0.8rem;" onkeydown="if(event.key==='Enter')svVerificarPass()"/>
+    <p id="sv-pass-error" style="display:none;color:#c0392b;font-size:0.5rem;text-align:center;margin-bottom:0.7rem;">Contraseña incorrecta</p>
+    <button onclick="svVerificarPass()" style="width:100%;background:#c9a96e;border:none;border-radius:6px;padding:0.85rem;font-family:'Montserrat',sans-serif;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:#0a0a08;font-weight:600;cursor:pointer;margin-bottom:0.6rem;">Entrar</button>
+    <button onclick="svCerrarPass()" style="width:100%;background:none;border:0.5px solid #2a2a22;border-radius:6px;padding:0.7rem;font-family:'Montserrat',sans-serif;font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;color:#6a6050;cursor:pointer;">Cancelar</button>
+  </div>
+</div>
+
+<style>
+@keyframes svblink{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes svScan{0%{top:0;}100%{top:100%;}}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
+
+<script>
+const SV_PASS='selvaggia2025';
+const SV_TOTAL_MESAS=30;
+const SV_MENU={
+  'Cortes':[{n:'Tomahawk 1kg',p:3120},{n:'Vacío 400g',p:960},{n:'Vacío 1kg',p:2490},{n:'New York 350g',p:760},{n:'Porterhouse 1kg',p:2100},{n:'Filete Australiano 250g',p:890}],
+  'Guarniciones':[{n:'Papas Trufadas',p:315},{n:'Puré Selvaggia',p:115},{n:'Vegetales al Grill con Pesto',p:245},{n:'Ensalada Mediterránea',p:110},{n:'Patatas Selvaggia',p:85},{n:'Zanahorias Rostizadas con Tahini',p:120}],
+  'Platos Fuertes':[{n:'Costilla Selvaggia 800g',p:1312},{n:'Camarón Tigre al Grill 400g',p:1800},{n:'Totoaba sobre Bisquet Ahumado',p:590},{n:'Chuleta de Cordero en Costra',p:495},{n:'Salmón Sellado 200g',p:360},{n:'Pollo a la Parmesana 200g',p:320}],
+  'Entradas':[{n:'Aguachile de Rib Eye',p:692},{n:'Roll de Langosta 100g',p:634},{n:'Jamón Ibérico Pata Negra 50g',p:1100},{n:'Burrata Mediterránea',p:340},{n:'Tuétanos Selvaggia',p:425},{n:'Tartare de Atún',p:218},{n:'Mejillones con Cerveza Blanche',p:390},{n:'Pulpo Mediterráneo',p:380},{n:'Atún en Costra Furikake',p:337},{n:'Slider Selvaggia 2pzas',p:241},{n:'Carpaccio de Pulpo',p:249},{n:'Tostadas de Atún',p:241}],
+  'Pastas':[{n:'Capellini con Caviar Beluga',p:4280},{n:'Risotto con Langosta',p:1095},{n:'Selvaggia Padano',p:518},{n:'Ravioles al Pesto',p:471},{n:'Fusilli Frutti di Mare',p:465},{n:'Fetucchini Chavroux',p:453},{n:'Fetucchini Carbonara',p:340}],
+  'Raw Bar':[{n:'Caviar Beluga 30g',p:12500},{n:'Caviar Beluga 60g',p:24000},{n:'Caviar Beluga 90g',p:37500},{n:'Langosta de Maine (kg)',p:5275},{n:'King Crab ½kg',p:2500},{n:'King Crab 1kg',p:5000},{n:'Ostiones Kumamoto 4pzas',p:210},{n:'Ostiones San Blas 4pzas',p:165},{n:'Ostiones San Blas 8pzas',p:295},{n:'Sashimi de Hamachi',p:320},{n:'Aguachile de Camarón',p:320}],
+  'Ensaladas':[{n:'Ensalada Selvaggia',p:210},{n:'Ensalada Verde',p:195},{n:'Ensalada de Betabel',p:170}],
+  'Pizzettas':[{n:'Pizzetta de Trufa Negra',p:1690},{n:'Pizzetta de Aguacate',p:450},{n:'Pizzetta de Jamón Serrano',p:380},{n:'Pizzetta Margarita',p:249}],
+  'Tacos':[{n:'Taco de Ribeye',p:280},{n:'Taco de Pulpo a las Brasas',p:180},{n:'Taco de Camarón',p:125},{n:'Taco de Pork Belly',p:85}],
+  'Coctelería':[{n:'Old Fashioned',p:220},{n:'Negroni',p:250},{n:'Manhattan',p:240},{n:'Dry Martini',p:250},{n:'Vesper Martini',p:250},{n:'Cosmopolitan',p:240},{n:'Moscow Mule',p:230},{n:'French 75',p:220},{n:'Sidecar',p:270},{n:'Sazerac',p:250},{n:'Mezcal Rubí',p:250},{n:'Raíz de Jaguar',p:250},{n:'Tigre Amarillo',p:250},{n:'Midnight Boulevardier',p:230},{n:'Nior de Lychee',p:210},{n:'Espresso Martini',p:180},{n:'After Selvaggia',p:190},{n:'Carajillo',p:180},{n:'Canija',p:180}],
+  'Infantil':[{n:'Slider Infantil',p:180},{n:'Fusilli Infantil',p:125},{n:'Pechuga de Pollo a la Plancha',p:155}]
+};
+
+let svMesas={},svMesaActiva=null,svCatActiva=null,svClMesaActiva=null,svScanInterval=null,svVideoStream=null;
+
+function svGenCodigo(){return String(Math.floor(100000+Math.random()*900000));}
+
+function svGenQR(codigo){
+  const cont=document.getElementById('sv-qr-container');
+  cont.innerHTML='';
+  new QRCode(cont,{text:codigo,width:100,height:100,colorDark:'#c9a96e',colorLight:'#111109',correctLevel:QRCode.CorrectLevel.H});
+}
+
+function svRenderMesas(){
+  const grid=document.getElementById('sv-mesa-grid');
+  grid.innerHTML='';
+  for(let i=1;i<=SV_TOTAL_MESAS;i++){
+    const ocupada=svMesas[i]&&svMesas[i].activa;
+    const btn=document.createElement('button');
+    btn.style.cssText=`aspect-ratio:1;border-radius:8px;border:0.5px solid ${ocupada?'#c9a96e':'#2a2a22'};background:${ocupada?'#0f0f0d':'#111109'};cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:'Montserrat',sans-serif;transition:all 0.2s;position:relative;`;
+    btn.innerHTML=`${ocupada?'<span style="position:absolute;top:3px;right:5px;color:#c9a96e;font-size:7px;">●</span>':''}<span style="font-size:0.75rem;font-weight:600;color:${ocupada?'#c9a96e':'#e8e0d0'};">${i}</span><span style="font-size:0.38rem;letter-spacing:0.1em;text-transform:uppercase;color:${ocupada?'#c9a96e':'#4a4840'};">${ocupada?'Ocupada':'Libre'}</span>`;
+    btn.onclick=()=>svSeleccionarMesa(i);
+    grid.appendChild(btn);
+  }
+}
+
+function svSeleccionarMesa(num){
+  svMesaActiva=num;
+  if(!svMesas[num]||!svMesas[num].activa)svMesas[num]={activa:true,codigo:svGenCodigo(),items:[],total:0};
+  document.getElementById('sv-comanda-title').textContent='Mesa '+num;
+  document.getElementById('sv-codigo-mesa').textContent=svMesas[num].codigo;
+  svGenQR(svMesas[num].codigo);
+  svRenderComanda();svRenderCats();
+  document.getElementById('sv-vista-mesas').style.display='none';
+  document.getElementById('sv-vista-comanda').style.display='block';
+  svRenderMesas();
+}
+
+function svVolverMesas(){
+  document.getElementById('sv-vista-mesas').style.display='block';
+  document.getElementById('sv-vista-comanda').style.display='none';
+  svCatActiva=null;
+}
+
+function svRenderCats(){
+  document.getElementById('sv-cats').innerHTML=Object.keys(SV_MENU).map(cat=>
+    `<button onclick="svToggleCat('${cat}')" style="background:none;border:0.5px solid ${svCatActiva===cat?'#c9a96e':'#2a2a22'};border-radius:6px;padding:0.38rem 0.65rem;font-family:'Montserrat',sans-serif;font-size:0.44rem;letter-spacing:0.1em;text-transform:uppercase;color:${svCatActiva===cat?'#c9a96e':'#6a6050'};cursor:pointer;white-space:nowrap;">${cat}</button>`
+  ).join('');
+}
+
+function svToggleCat(cat){
+  const lista=document.getElementById('sv-plats');
+  if(svCatActiva===cat){svCatActiva=null;lista.style.display='none';lista.innerHTML='';}
+  else{
+    svCatActiva=cat;lista.style.display='block';
+    lista.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;">'+SV_MENU[cat].map(p=>
+      `<button onclick="svAgregar('${p.n.replace(/'/g,"\\'")}',${p.p})" style="text-align:left;background:#111109;border:0.5px solid #1a1a14;border-radius:6px;padding:0.45rem 0.65rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:4px;font-family:'Montserrat',sans-serif;">
+        <span style="font-size:0.58rem;color:#b0a890;flex:1;line-height:1.3;">${p.n}</span>
+        <span style="font-size:0.58rem;color:#c9a96e;font-weight:500;white-space:nowrap;">$${p.p.toLocaleString()}</span>
+      </button>`
+    ).join('')+'</div>';
+  }
+  svRenderCats();
+}
+
+function svAgregar(nombre,precio){
+  svMesas[svMesaActiva].items.push({nombre,precio});
+  svMesas[svMesaActiva].total+=precio;
+  svRenderComanda();
+  if(svClMesaActiva===svMesaActiva)svRenderCuentaCliente();
+  svToast(nombre+' agregado');
+}
+
+function svAgregarManual(){
+  const n=document.getElementById('sv-plat-input').value.trim();
+  const p=parseInt(document.getElementById('sv-prec-input').value);
+  if(!n||!p||p<=0)return;
+  svMesas[svMesaActiva].items.push({nombre:n,precio:p});
+  svMesas[svMesaActiva].total+=p;
+  document.getElementById('sv-plat-input').value='';
+  document.getElementById('sv-prec-input').value='';
+  svRenderComanda();
+  if(svClMesaActiva===svMesaActiva)svRenderCuentaCliente();
+  svToast(n+' agregado');
+}
+
+function svRenderComanda(){
+  const m=svMesas[svMesaActiva];
+  const lista=document.getElementById('sv-lista-comanda');
+  const empty=document.getElementById('sv-empty-comanda');
+  if(!m||m.items.length===0){lista.innerHTML='';empty.style.display='block';document.getElementById('sv-total-comanda').textContent='$0';return;}
+  empty.style.display='none';
+  lista.innerHTML=m.items.map((item,idx)=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:0.5px solid #1a1a14;gap:8px;">
+      <span style="font-size:0.65rem;color:#b0a890;flex:1;">${item.nombre}</span>
+      <span style="font-size:0.65rem;color:#c9a96e;font-weight:500;">$${item.precio.toLocaleString()}</span>
+      <button onclick="svEliminarItem(${idx})" style="background:none;border:none;color:#3a3830;cursor:pointer;font-size:12px;padding:0 3px;">✕</button>
+    </div>`).join('');
+  document.getElementById('sv-total-comanda').textContent='$'+m.total.toLocaleString();
+}
+
+function svEliminarItem(idx){
+  const m=svMesas[svMesaActiva];
+  m.total-=m.items[idx].precio;
+  m.items.splice(idx,1);
+  svRenderComanda();
+  if(svClMesaActiva===svMesaActiva)svRenderCuentaCliente();
+}
+
+function svEnviarCliente(){
+  if(!svMesas[svMesaActiva]||svMesas[svMesaActiva].items.length===0){svToast('Agrega al menos un platillo');return;}
+  svToast('Cuenta enviada al cliente ✓');
+}
+
+function svLimpiarMesa(){
+  if(svMesas[svMesaActiva])svMesas[svMesaActiva]={activa:false,codigo:null,items:[],total:0};
+  if(svClMesaActiva===svMesaActiva){svClMesaActiva=null;svSalirCuenta();}
+  svRenderMesas();svVolverMesas();
+}
+
+function svVerificarCodigo(codigoParam){
+  const codigo=codigoParam||document.getElementById('sv-cl-code').value.trim();
+  let encontrada=null;
+  for(let num in svMesas){if(svMesas[num].activa&&svMesas[num].codigo===codigo){encontrada=parseInt(num);break;}}
+  if(encontrada){
+    svClMesaActiva=encontrada;
+    document.getElementById('sv-cl-error').style.display='none';
+    document.getElementById('sv-cl-login').style.display='none';
+    document.getElementById('sv-cl-cuenta').style.display='block';
+    document.getElementById('sv-cl-mesa-label').textContent='Mesa '+encontrada;
+    svRenderCuentaCliente();
+  } else {
+    document.getElementById('sv-cl-error').style.display='block';
+  }
+}
+
+function svAbrirScanner(){
+  const overlay=document.getElementById('sv-scanner-overlay');
+  overlay.style.display='flex';
+  overlay.style.flexDirection='column';
+  const video=document.getElementById('sv-qr-video');
+  const canvas=document.getElementById('sv-qr-canvas');
+  navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}})
+    .then(stream=>{
+      svVideoStream=stream;
+      video.srcObject=stream;
+      video.play();
+      document.getElementById('sv-scan-status').textContent='Apunta al código QR de tu mesa...';
+      const ctx=canvas.getContext('2d');
+      svScanInterval=setInterval(()=>{
+        if(video.readyState===video.HAVE_ENOUGH_DATA){
+          canvas.width=video.videoWidth;
+          canvas.height=video.videoHeight;
+          ctx.drawImage(video,0,0,canvas.width,canvas.height);
+          const imageData=ctx.getImageData(0,0,canvas.width,canvas.height);
+          const code=jsQR(imageData.data,imageData.width,imageData.height,{inversionAttempts:'dontInvert'});
+          if(code&&/^\d{6}$/.test(code.data)){
+            svCerrarScanner();
+            document.getElementById('sv-cl-code').value=code.data;
+            svVerificarCodigo(code.data);
+          }
+        }
+      },200);
+    })
+    .catch(()=>{
+      document.getElementById('sv-scan-status').textContent='No se pudo acceder a la cámara. Usa el código manual.';
+    });
+}
+
+function svCerrarScanner(){
+  if(svVideoStream)svVideoStream.getTracks().forEach(t=>t.stop());
+  clearInterval(svScanInterval);
+  svVideoStream=null;
+  document.getElementById('sv-scanner-overlay').style.display='none';
+}
+
+function svRenderCuentaCliente(){
+  const m=svMesas[svClMesaActiva];
+  if(!m)return;
+  const items=document.getElementById('sv-cl-items');
+  const empty=document.getElementById('sv-cl-empty');
+  if(m.items.length===0){items.innerHTML='';empty.style.display='block';}
+  else{
+    empty.style.display='none';
+    items.innerHTML=m.items.map(item=>`
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0;border-bottom:0.5px solid #1a1a14;gap:8px;">
+        <span style="font-size:0.65rem;color:#b0a890;flex:1;">${item.nombre}</span>
+        <span style="font-size:0.65rem;color:#c9a96e;font-weight:500;">$${item.precio.toLocaleString()}</span>
+      </div>`).join('');
+  }
+  document.getElementById('sv-cl-total').textContent='$'+m.total.toLocaleString();
+}
+
+function svSalirCuenta(){
+  svClMesaActiva=null;
+  document.getElementById('sv-cl-login').style.display='block';
+  document.getElementById('sv-cl-cuenta').style.display='none';
+  document.getElementById('sv-cl-code').value='';
+}
+
+function svPedirPass(){
+  const overlay=document.getElementById('sv-pass-overlay');
+  overlay.style.display='flex';
+  overlay.style.flexDirection='row';
+  document.getElementById('sv-pass-input').value='';
+  document.getElementById('sv-pass-error').style.display='none';
+  setTimeout(()=>document.getElementById('sv-pass-input').focus(),100);
+}
+
+function svVerificarPass(){
+  if(document.getElementById('sv-pass-input').value===SV_PASS){
+    document.getElementById('sv-pass-overlay').style.display='none';
+    svSetTab('mesero');svRenderMesas();
+  } else {
+    document.getElementById('sv-pass-error').style.display='block';
+  }
+}
+
+function svCerrarPass(){document.getElementById('sv-pass-overlay').style.display='none';}
+
+function svSetTab(tab){
+  document.getElementById('sv-panel-mesero').style.display=tab==='mesero'?'block':'none';
+  document.getElementById('sv-panel-cliente').style.display=tab==='cliente'?'block':'none';
+  document.getElementById('sv-tab-m').style.color=tab==='mesero'?'#c9a96e':'#6a6050';
+  document.getElementById('sv-tab-m').style.borderBottom=tab==='mesero'?'1px solid #c9a96e':'0.5px solid #2a2a22';
+  document.getElementById('sv-tab-c').style.color=tab==='cliente'?'#c9a96e':'#6a6050';
+  document.getElementById('sv-tab-c').style.borderBottom=tab==='cliente'?'1px solid #c9a96e':'0.5px solid #2a2a22';
+}
+
+function svToast(msg){
+  let t=document.getElementById('sv-toast-el');
+  if(!t){t=document.createElement('div');t.id='sv-toast-el';t.style.cssText='display:none;position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:#1a1a14;border:0.5px solid #c9a96e;border-radius:8px;padding:0.7rem 1.2rem;font-family:Montserrat,sans-serif;font-size:0.6rem;color:#c9a96e;z-index:99999;';document.body.appendChild(t);}
+  t.textContent=msg;t.style.display='block';
+  setTimeout(()=>t.style.display='none',2000);
+}
+</script>
+
+<!-- AI Float Button -->
+<div class="ai-float">
+  <button class="ai-btn" onclick="openWhatsApp()" title="Asistente IA — Reservar o consultar">
+    <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.73.44 3.36 1.2 4.78L2 22l5.22-1.2A9.95 9.95 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+  </button>
+  <span class="ai-label">Reservar</span>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+  <div class="toast-title">¡Reservación Recibida!</div>
+  <div class="toast-text" id="toastText">Le confirmaremos por WhatsApp en breve.</div>
+</div>
+
+<script>
+// CURSOR
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top = my + 'px';
+});
+
+function animateRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) *.12;
+  ring.style.left = rx + 'px';
+  ring.style.top = ry + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+document.querySelectorAll('a, button, .menu-item, .gallery-item').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%,-50%) scale(1.8)');
+  el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%,-50%) scale(1)');
+});
+
+// NAVBAR
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// MOBILE NAV
+function toggleMobileNav() {
+  document.getElementById('mobileNav').classList.toggle('open');
+}
+
+// SCROLL REVEAL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+  observer.observe(el);
+});
+
+// MENU TABS
+function setTab(id) {
+  document.querySelectorAll('.menu-tab').forEach((t, i) => {
+    const tabIds = ['cortes','platos','entradas','pastas','frescos','ensaladas','pizzettas','tacos','cocteleria','infantil'];
+    t.classList.toggle('active', tabIds[i] === id);
+  });
+  document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// SET MIN DATE
+const dateInput = document.getElementById('resDate');
+if (dateInput) {
+  const today = new Date();
+  today.setDate(today.getDate() + 1);
+  dateInput.min = today.toISOString().split('T')[0];
+}
+
+// HIGHLIGHT TODAY
+const days = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+const todayName = days[new Date().getDay()];
+document.querySelectorAll('.hora-day').forEach(el => {
+  if (el.textContent.trim() === todayName) el.closest('.hora-item').classList.add('today');
+});
+
+// RESERVATION SUBMIT
+function submitReservation() {
+  const name = document.getElementById('resName').value.trim();
+  const phone = document.getElementById('resPhone').value.trim();
+  const date = document.getElementById('resDate').value;
+  const time = document.getElementById('resTime').value;
+  const guests = document.getElementById('resGuests').value;
+
+  if (!name || !phone || !date || !time || !guests) {
+    alert('Por favor complete los campos obligatorios: nombre, teléfono, fecha, hora y número de personas.');
+    return;
+  }
+
+  const dateFormatted = new Date(date + 'T12:00:00').toLocaleDateString('es-MX', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  const toastEl = document.getElementById('toast');
+  document.getElementById('toastText').textContent = `${name} · ${guests} · ${dateFormatted} a las ${time}`;
+  toastEl.classList.add('show');
+
+  // WhatsApp message
+  const msg = encodeURIComponent(`Hola SELVAGGIA, quiero reservar una mesa:\n\n👤 Nombre: ${name}\n📱 Teléfono: ${phone}\n👥 Personas: ${guests}\n📅 Fecha: ${dateFormatted}\n🕐 Hora: ${time}\n${document.getElementById('resOccasion').value ? '🎉 Ocasión: ' + document.getElementById('resOccasion').value : ''}\n${document.getElementById('resNotes').value ? '📝 Notas: ' + document.getElementById('resNotes').value : ''}`);
+
+  setTimeout(() => {
+    window.open('https://wa.me/523332539967?text=' + msg, '_blank');
+    toastEl.classList.remove('show');
+  }, 2500);
+}
+
+// WHATSAPP FLOAT
+function openWhatsApp() {
+  window.open('https://wa.me/523332539967?text=Hola!%20Quisiera%20reservar%20una%20mesa%20en%20SELVAGGIA', '_blank');
+}
+
+// PARALLAX HERO
+window.addEventListener('scroll', () => {
+  const hero = document.querySelector('.hero-video-bg');
+  if (hero) hero.style.transform = `scale(1.05) translateY(${window.scrollY * 0.2}px)`;
+});
+</script>
+</body>
+</html>
